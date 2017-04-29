@@ -21,22 +21,12 @@
       </div>
     </nav>
     <div class="container-fluid">
-<!--       <div id="time-slider">
-        <span id="range-value">24</span>h
-        <input id="timemachine" type="range" min="2" value="24" orient="vertical" />
-      </div> -->
-
       <div id="dygraph">
       </div>
     </div>
 
-
-    <!-- <script type="text/javascript" src="/jquery-3.1.0.min.js"></script> -->
-    <!-- <script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script> -->
-    <!-- <script type="text/javascript" src="/dygraph-combined.js"></script> -->
-    <!-- <script type="text/javascript" src="/moment-with-locales.min.js"></script> -->
-
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/4.3.1/papaparse.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
@@ -50,5 +40,81 @@
       var SHOW_LAT_MIN_MAX = false; // Show min/max values for latency
     </script>
     <script type="text/javascript" src="http://arnaudcoquelet.github.io/water-collect.script.js"></script>
+
+        <script type="text/javascript">
+        water_data = 'http://perso.eckoteck.com/water-meter.csv';
+
+        function updateGraph(data_array){
+          g = new Dygraph(
+              document.getElementById("dygraph"),
+              data_array,
+              {
+                labels: [ "Date", "Field1", "Field2", "MeterId", "Field4", "Field5", "Field6", "Usage","Rate","Field9","Field10", ],
+                series: {
+                  "Rate": { axis: 'y1', showInRangeSelector: true, fillAlpha: 0.9  },
+                  "Usage": { axis: 'y2', fillAlpha: 0.1 },
+                },
+                legend: "always",
+                labelsSeparateLines: true,
+                connectSeparatedPoints: true,
+                fillGraph: true,
+                colors: [
+                  "blue",
+                  "green"
+                ],
+                ylabel: "Usage",
+                y2label: "Total",
+                visibility: [false, false, false, false, false, false, true, true, false, false,],
+                showRangeSelector: true,
+
+              }
+          );
+        };
+
+        function completeUpdatingDataCsv(results)
+        {
+          console.log("CSV:", results.data);
+          vArray = results.data;
+
+          var previousUsage=0;
+          var reformattedArray = vArray.map(function(arrayItem) {
+            arrayItem[0] = new Date(arrayItem[0]);
+            arrayItem[1] = parseInt(arrayItem[1]);
+            arrayItem[2] = parseInt(arrayItem[2]);
+            arrayItem[3] = parseInt(arrayItem[3]);
+            arrayItem[4] = parseInt(arrayItem[4]);
+            arrayItem[5] = parseInt(arrayItem[5]);
+            arrayItem[6] = parseInt(arrayItem[6]);
+            arrayItem[7] = parseInt(arrayItem[7]);
+            arrayItem[8] = parseInt(arrayItem[8]);
+            arrayItem[9] = parseInt(arrayItem[9]);
+            arrayItem[10] = parseInt(arrayItem[10]);
+
+            if (previousUsage) {
+              arrayItem[8] = arrayItem[7] - previousUsage;
+            }
+            else {
+              arrayItem[8] = 0
+              console.log("Previous:", previousUsage);
+            }
+
+            previousUsage = arrayItem[7];
+            return arrayItem;
+          });
+
+          console.log("Update:", reformattedArray);
+
+          updateGraph(reformattedArray);
+        };
+
+        //Load CSV file and calculate increase between collections
+        Papa.parse(water_data, {download: true, skipEmptyLines: true, header: false, complete: completeUpdatingDataCsv});
+
+
+
+
+
+    </script>
+
   </body>
 </html>

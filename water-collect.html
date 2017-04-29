@@ -18,8 +18,8 @@
 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/dygraph/2.0.0/dygraph.css" rel="stylesheet">
-    <link href="/dashboard.css" rel="stylesheet">
-    <title>Speedtest History</title>
+    <link href="http://arnaudcoquelet.github.io/dashboard.css" rel="stylesheet">
+    <title>Water Usage History</title>
   </head>
   <body>
     <nav class="navbar navbar-default navbar-fixed-top">
@@ -31,7 +31,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/index.html">Speedtest History (refresh in: <span id="cntdown"></span>s)</a>
+          <a class="navbar-brand" href="/index.html">Usage History (refresh in: <span id="cntdown"></span>s)</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -61,11 +61,6 @@
       </div>
       <div id="dygraph">
       </div>
-      <footer>
-        Powered by <a href="http://dygraphs.com/">Dygraphs</a> &bull;
-        Stat source: <a href="https://github.com/cjeanneret/speedtest-cli">modified speedtest-cli</a> &bull;
-        See on <a href="https://github.com/cjeanneret/speedtest-dashboard">Github.com</a>
-      </footer>
     </div>
 
 
@@ -87,6 +82,6 @@
       var SHOW_UP_MIN_MAX = false; // Show min/max values for upload
       var SHOW_LAT_MIN_MAX = false; // Show min/max values for latency
     </script>
-    <script type="text/javascript" src="/water-collect.script.js"></script>
+    <script type="text/javascript" src="http://arnaudcoquelet.github.io/water-collect.script.js"></script>
   </body>
 </html>

@@ -1,0 +1,132 @@
+/*
+ * Base structure
+ */
+
+/* Move down content because we have a fixed navbar that is 50px tall */
+body {
+  padding-top: 50px;
+}
+
+/*
+ * Top navigation
+ * Hide default border to remove 1px line.
+ */
+.navbar-fixed-top {
+  border: 0;
+}
+
+.navbar-brand {
+  width: 350px;
+}
+
+/*
+ * Main content
+ */
+
+.main {
+  padding: 20px;
+}
+#dygraph {
+  position: absolute;
+  left: 50px;
+  right: 20px;
+  top: 60px;
+  bottom: 5%;
+  text-align:center;
+}
+.dygraph-legend {
+  background-color: rgba(200, 200, 255, 0.75) !important;
+  padding: 4px;
+  border: 1px solid #000;
+  border-radius: 10px;
+  box-shadow: 4px 4px 4px #888;
+  pointer-events: none;
+}
+
+footer {
+  bottom:0px;
+  position:absolute;
+  width:99%;
+  text-align:center;
+  font-size:10px;
+  padding-bottom:5px;
+}
+@media (min-width: 768px) {
+  .main {
+    padding-right: 40px;
+    padding-left: 40px;
+  }
+}
+@media (max-width: 768px) {
+  #dygraph {
+    top: 60px;
+  }
+}
+.main .page-header {
+  margin-top: 0;
+}
+#timeframe .slider-selection {
+  background: #BABABA;
+}
+#navbar > div {
+  padding-top: 15px;
+  color: #fff;
+}
+
+#progress {
+  height: 5px;
+  padding:0px;
+  position:absolute;
+  width:100%;
+  top:50px;
+  left:0px;
+  z-index: 10;
+}
+#progress > div {
+  margin:0px;
+}
+
+input[type=range][orient=vertical] {
+  writing-mode: bt-lr; /* IE */
+  -webkit-appearance: slider-vertical; /* WebKit */
+  width: 8px;
+  height: 50%;
+  padding: 0 5px;
+}
+
+#time-slider {
+  position: absolute;
+  display:none;
+  height: 100%;
+  z-index: 10;
+  top:80px;
+  left:10px;
+  text-align:center;
+}
+
+#loading {
+  display:block;
+  position:absolute;
+  top:45%;
+  left:45%;
+}
+.glyphicon-refresh-animate {
+  -animation: spin .7s infinite linear;
+  -webkit-animation: spin2 .7s infinite linear;
+  font-size:50px;
+}
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg);}
+  to { -webkit-transform: rotate(360deg);}
+}
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg);}
+  to { transform: scale(1) rotate(360deg);}
+}
+
+.navbar-brand {
+  background-image: url(/images/speed2-32-246261.png);
+  background-repeat: no-repeat;
+  background-position: 5px center;
+  padding-left:45px;
+}

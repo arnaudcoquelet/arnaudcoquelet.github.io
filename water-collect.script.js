@@ -113,7 +113,7 @@ function draw_graph() {
         axes: {
           x: {
             valueFormatter: function(timestamp) {
-              return formatDate(timestamp);
+              return formatDate(timestamp, true);
               //return timestamp;
             },
             axisLabelFormatter: function(timestamp) {

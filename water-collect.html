@@ -38,11 +38,13 @@
       var SHOW_DOWN_MIN_MAX = false; // Show min/max values for download
       var SHOW_UP_MIN_MAX = false; // Show min/max values for upload
       var SHOW_LAT_MIN_MAX = false; // Show min/max values for latency
+
+      var DATA_CSV = 'http://perso.eckoteck.com/water-meter.csv';
     </script>
     <script type="text/javascript" src="http://arnaudcoquelet.github.io/water-collect.script.js"></script>
-
-        <script type="text/javascript">
-        water_data = 'http://perso.eckoteck.com/water-meter.csv';
+    <!-- <script type="text/javascript" src="water-collect.script.js"></script> -->
+ <!--    <script type="text/javascript">
+        //water_data = 'http://perso.eckoteck.com/water-meter.csv';
 
         function updateGraph(data_array){
           g = new Dygraph(
@@ -108,13 +110,10 @@
         };
 
         //Load CSV file and calculate increase between collections
-        Papa.parse(water_data, {download: true, skipEmptyLines: true, header: false, complete: completeUpdatingDataCsv});
+        Papa.parse(DATA_CSV, {download: true, skipEmptyLines: true, header: false, complete: completeUpdatingDataCsv});
 
 
-
-
-
-    </script>
+    </script> -->
 
   </body>
 </html>

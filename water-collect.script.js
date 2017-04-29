@@ -1,93 +1,65 @@
-var dygraphs_data;
-var g;
-
-var offset = -1;
-var one_day = -1;
-
-var legend_display = 'always';
-if ($(window).width() < 768) {
-  legend_display = 'onmouseover';
-}
-
-
-dygraphs_data = 'http://arnaudcoquelet.github.io/water-meter.csv';
-dygraphs_data = 'http://perso.eckoteck.com/water-meter.csv';
-draw_graph();
-
-
-function formatDate(d, short=false) {
-  if (short) {
-    return moment.unix(d).format('H:mm');
-  } else {
-    return moment.unix(d).format('YYYY/MM/DD - H:mm:ss');
-  }
-}
-
-function get_max_min(cur_max, cur_min, val) {
-    if (val > cur_max) {
-      cur_max = val;
-    }
-    if (cur_min < 0 && val > 0) {
-      cur_min = val;
-    }
-    if (val > 0 && val < cur_min) {
-      cur_min = val;
-    }
-    return [cur_max, cur_min];
-}
-
-
-function draw_graph() {
+function updateGraph(data_array){
   g = new Dygraph(
       document.getElementById("dygraph"),
-      dygraphs_data,
+      data_array,
       {
-        labels: [ "Date", "Field1", "Field2", "MeterId", "Field4", "Field5", "Field6", "Usage","Field8","Field9","Field10", ],
+        labels: [ "Date", "Field1", "Field2", "MeterId", "Field4", "Field5", "Field6", "Usage","Rate","Field9","Field10", ],
         series: {
-          //"Usage": { axis: 'y1'},
-          "Usage": { axis: 'y1', showInRangeSelector: true },
-          "Field4": { axis: 'y1'},
+          "Rate": { axis: 'y1', showInRangeSelector: true, fillAlpha: 0.9  },
+          "Usage": { axis: 'y2', fillAlpha: 0.1 },
         },
-        legend: legend_display,
+        legend: "always",
         labelsSeparateLines: true,
         connectSeparatedPoints: true,
         fillGraph: true,
         colors: [
           "blue",
+          "green"
         ],
         ylabel: "Usage",
-        axes: {
-          x: {
-            valueFormatter: function(timestamp) {
-              return formatDate(timestamp, true);
-              //return timestamp;
-            },
-            axisLabelFormatter: function(timestamp) {
-              return formatDate(timestamp, true);
-              //return timestamp;
-            }
-          },
-          y: {
-          }
-        },
+        y2label: "Total",
+        visibility: [false, false, false, false, false, false, true, true, false, false,],
         showRangeSelector: true,
-        rangeSelectorPlotFillColor: 'green',
+
       }
   );
-  g.ready(function() {
-    //averages();
-  });
-}
+};
 
-function updateGraph() {
-  x = g.xAxisRange()[0];
+function completeUpdatingDataCsv(results)
+{
+  console.log("CSV:", results.data);
+  vArray = results.data;
 
-  g.updateOptions({
-    file: dygraphs_data,
-    dateWindow: [
-      x,
-      moment().unix()
-    ]
+  var previousUsage=0;
+  var reformattedArray = vArray.map(function(arrayItem) {
+    arrayItem[0] = new Date(arrayItem[0]);
+    arrayItem[1] = parseInt(arrayItem[1]);
+    arrayItem[2] = parseInt(arrayItem[2]);
+    arrayItem[3] = parseInt(arrayItem[3]);
+    arrayItem[4] = parseInt(arrayItem[4]);
+    arrayItem[5] = parseInt(arrayItem[5]);
+    arrayItem[6] = parseInt(arrayItem[6]);
+    arrayItem[7] = parseInt(arrayItem[7]);
+    arrayItem[8] = parseInt(arrayItem[8]);
+    arrayItem[9] = parseInt(arrayItem[9]);
+    arrayItem[10] = parseInt(arrayItem[10]);
+
+    if (previousUsage) {
+      arrayItem[8] = arrayItem[7] - previousUsage;
+    }
+    else {
+      arrayItem[8] = 0;
+      console.log("Previous:", previousUsage);
+    }
+
+    previousUsage = arrayItem[7];
+    return arrayItem;
   });
-  g.ready();
-}
+
+  console.log("Update:", reformattedArray);
+
+  updateGraph(reformattedArray);
+};
+
+//Load CSV file and calculate increase between collections
+Papa.parse(DATA_CSV, {download: true, skipEmptyLines: true, header: false, complete: completeUpdatingDataCsv});

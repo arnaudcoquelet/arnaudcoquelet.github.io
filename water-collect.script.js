@@ -24,6 +24,7 @@ function count_down() {
 }
 
 dygraphs_data = 'http://arnaudcoquelet.github.io/water-meter.csv';
+dygraphs_data = 'http://perso.eckoteck.com/water-meter.csv';
 draw_graph();
 
 

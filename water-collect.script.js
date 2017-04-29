@@ -100,7 +100,7 @@ function draw_graph() {
         series: {
           //"Usage": { axis: 'y1'},
           "Usage": { axis: 'y1', showInRangeSelector: true },
-          "Field4": { axis: 'y2'},
+          "Field4": { axis: 'y1'},
         },
         legend: legend_display,
         labelsSeparateLines: true,

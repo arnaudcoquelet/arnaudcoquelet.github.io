@@ -12,17 +12,6 @@ if ($(window).width() < 768) {
 }
 
 
-$('#cntdown').text(REFRESH_INTER);
-
-function count_down() {
-  if (cntdown <= 0) {
-    cntdown = timer;
-    updateGraph();
-  }
-  cntdown = cntdown - 1000;
-  $('#cntdown').text(cntdown/1000);
-}
-
 dygraphs_data = 'http://arnaudcoquelet.github.io/water-meter.csv';
 dygraphs_data = 'http://perso.eckoteck.com/water-meter.csv';
 draw_graph();
@@ -156,8 +145,7 @@ function draw_graph() {
       }
   );
   g.ready(function() {
-    averages();
-    update_countdown = setInterval(function() { count_down() }, 1000);
+    //averages();
   });
 }
 

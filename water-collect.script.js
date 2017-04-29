@@ -20,8 +20,6 @@ function updateGraph(data_array){
         y2label: "Total",
         visibility: [false, false, false, false, false, false, true, true, false, false,],
         showRangeSelector: true,
-        rollPeriod: 7,
-        showRoller: true,
       }
   );
 };

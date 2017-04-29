@@ -121,21 +121,6 @@ function draw_graph() {
             }
           },
           y: {
-            valueRange: [0, MAX_BW+50],
-          }
-        },
-        underlayCallback: function(canvas, area, g) {
-          canvas.strokeStyle = 'red';
-          var lines = [(MAX_BW*0.8),MAX_BW];
-          var range = g.xAxisRange();
-          for (var idy = 0; idy < lines.length; idy++) {
-            var canvasy = g.toDomYCoord(lines[idy]);
-            canvas.beginPath();
-            canvas.moveTo(g.toDomXCoord(range[0]), canvasy);
-            canvas.lineTo(g.toDomXCoord(range[1]), canvasy);
-            canvas.lineWidth = 2;
-            canvas.stroke();
-            canvas.closePath();
           }
         },
         showRangeSelector: true,
@@ -157,5 +142,5 @@ function updateGraph() {
       moment().unix()
     ]
   });
-  g.ready(averages);
+  g.ready();
 }

@@ -19,7 +19,7 @@ function formatDate(d, short=false) {
   if (short) {
     return moment.unix(d).format('H:mm');
   } else {
-    return moment.unix(d).format('D MMM YYYY - H:mm:ss');
+    return moment.unix(d).format('YYYY/MM/DD - H:mm:ss');
   }
 }
 
@@ -113,12 +113,12 @@ function draw_graph() {
         axes: {
           x: {
             valueFormatter: function(timestamp) {
-              //return formatDate(timestamp);
-              return timestamp;
+              return formatDate(timestamp);
+              //return timestamp;
             },
             axisLabelFormatter: function(timestamp) {
-              //return formatDate(timestamp, true);
-              return timestamp;
+              return formatDate(timestamp, true);
+              //return timestamp;
             }
           },
           y: {

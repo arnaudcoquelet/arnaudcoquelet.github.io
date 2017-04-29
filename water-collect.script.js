@@ -1,12 +1,10 @@
 var dygraphs_data;
 var g;
-var timer = 1000*60*1;
-var cntdown = 1000*REFRESH_INTER;
+
 var offset = -1;
 var one_day = -1;
-var update_countdown;
 
-var legend_display = 'always';
+var legend_display = 'never';
 if ($(window).width() < 768) {
   legend_display = 'onmouseover';
 }

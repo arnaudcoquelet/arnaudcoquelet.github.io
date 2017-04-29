@@ -98,15 +98,15 @@ function draw_graph() {
       {
         labels: [ "Date", "Field1", "Field2", "MeterId", "Field4", "Field5", "Field6", "Usage","Field8","Field9","Field10", ],
         series: {
-          "Usage": { axis: 'y1'},
-          //"Usage": { axis: 'y1', showInRangeSelector: true },
+          //"Usage": { axis: 'y1'},
+          "Usage": { axis: 'y1', showInRangeSelector: true },
         },
         legend: legend_display,
         labelsSeparateLines: true,
         connectSeparatedPoints: true,
         fillGraph: true,
         colors: [
-          "purple",
+          "blue",
         ],
         ylabel: "Usage",
         axes: {

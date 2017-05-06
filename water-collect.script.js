@@ -23,7 +23,7 @@ function barChartPlotter(e) {
           var sep = points[i].canvasx - points[i - 1].canvasx;
           if (sep < min_sep) min_sep = sep;
         }
-        var bar_width = Math.floor(2.0 / 3 * min_sep);
+        var bar_width = Math.floor(3.0 / 3 * min_sep);
 
         // Do the actual plotting.
         for (var i = 0; i < points.length; i++) {
@@ -51,8 +51,8 @@ function updateGraph(data_array){
         },
         legend: "always",
         labelsSeparateLines: true,
-        connectSeparatedPoints: false,
-        fillGraph: true,
+        //connectSeparatedPoints: false,
+        //fillGraph: true,
         colors: [
           "blue",
           "green"

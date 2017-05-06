@@ -5,7 +5,7 @@ function updateGraph(data_array){
       {
         labels: [ "Date", "Field1", "Field2", "MeterId", "Field4", "Field5", "Field6", "Usage","Rate","Field9","Field10", ],
         series: {
-          "Rate": { axis: 'y1', showInRangeSelector: true, fillAlpha: 0.9  },
+          "Rate": { axis: 'y1', showInRangeSelector: true, fillAlpha: 0.9, plotter: barChartPlotter  },
           "Usage": { axis: 'y2', fillAlpha: 0.1 },
         },
         legend: "always",

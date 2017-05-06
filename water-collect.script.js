@@ -1,5 +1,5 @@
 // Darken a color
-      function darkenColor(colorStr) {
+function darkenColor(colorStr) {
         // Defined in dygraph-utils.js
         var color = Dygraph.toRGB_(colorStr);
         color.r = Math.floor((255 + color.r) / 2);
@@ -51,7 +51,7 @@ function updateGraph(data_array){
         },
         legend: "always",
         labelsSeparateLines: true,
-        connectSeparatedPoints: true,
+        connectSeparatedPoints: false,
         fillGraph: true,
         colors: [
           "blue",

@@ -67,7 +67,7 @@ function updateGraph(data_array){
 
 function completeUpdatingDataCsv(results)
 {
-  console.log("CSV:", results.data);
+//  console.log("CSV:", results.data);
   vArray = results.data;
 
   var previousUsage=0;
@@ -89,14 +89,14 @@ function completeUpdatingDataCsv(results)
     }
     else {
       arrayItem[8] = 0;
-      console.log("Previous:", previousUsage);
+ //     console.log("Previous:", previousUsage);
     }
 
     previousUsage = arrayItem[7];
     return arrayItem;
   });
 
-  console.log("Update:", reformattedArray);
+//  console.log("Update:", reformattedArray);
 
   updateGraph(reformattedArray);
 };

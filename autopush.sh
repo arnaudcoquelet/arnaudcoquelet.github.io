@@ -1,4 +1,7 @@
 #/bin/sh
+
+cd /root/arnaudcoquelet.github.io
+
 #Auto commit and push
 
 git add .
